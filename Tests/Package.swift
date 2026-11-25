@@ -29,7 +29,7 @@ let package = Package(
             branch: "master"
         ),
         .package(
-            url: "https://github.com/leviouwendijk/Terminal.git",
+            url: "https://github.com/swift-lco/Terminal.git",
             branch: "master"
         ),
         .package(path: ".."),
