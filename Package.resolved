@@ -238,7 +238,7 @@
     {
       "identity" : "swim",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Swim.git",
+      "location" : "https://github.com/swift-nvim/Swim.git",
       "state" : {
         "branch" : "master",
         "revision" : "741e38ffaa521c4b20cd95d98102435bd3d5da9c"
@@ -247,7 +247,7 @@
     {
       "identity" : "swiminterpreter",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/SwimInterpreter.git",
+      "location" : "https://github.com/swift-nvim/SwimInterpreter.git",
       "state" : {
         "branch" : "master",
         "revision" : "72d97ff15648208b5d9e3d284f3002507b8e0c20"
@@ -256,7 +256,7 @@
     {
       "identity" : "swimio",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/SwimIO.git",
+      "location" : "https://github.com/swift-nvim/SwimIO.git",
       "state" : {
         "branch" : "master",
         "revision" : "730b6f29016d8a6dfa36a73271585aae87c32cf3"
@@ -283,7 +283,7 @@
     {
       "identity" : "testing",
       "kind" : "remoteSourceControl",
-      "location" : "https://github.com/leviouwendijk/Testing.git",
+      "location" : "https://github.com/swift-tooling/Testing.git",
       "state" : {
         "branch" : "master",
         "revision" : "105eecb68c3db99119dff3afeb846b7923abbc85"
