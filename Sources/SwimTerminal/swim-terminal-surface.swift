@@ -2,6 +2,7 @@ import Dispatch
 import Swim
 import SwimInterpreter
 import Terminal
+import Surface
 
 public enum SwimTerminalSurfacePresentation:
     Sendable,
@@ -51,7 +52,7 @@ public struct SwimTerminalSurface:
     Sendable
 {
     public private(set) var editor: SwimEditor
-    public internal(set) var viewport: TerminalViewport
+    public internal(set) var viewport: SurfaceViewport
     public private(set) var commandLine: TerminalCommandLine
     public var configuration: SwimTerminalConfiguration
     public var sizePolicy: SwimTerminalSurfaceSizePolicy
@@ -81,7 +82,7 @@ public struct SwimTerminalSurface:
         placeholderStyle: TerminalStyle = .dim
     ) {
         self.editor = editor
-        viewport = TerminalViewport(
+        viewport = SurfaceViewport(
             visibleRows: visibleRows
         )
         isFollowingEnd = followEnd
@@ -140,11 +141,11 @@ public struct SwimTerminalSurface:
 
     @discardableResult
     public mutating func handle(
-        _ event: TerminalInputEvent,
+        _ event: SurfaceInput,
         nowNanoseconds: UInt64 =
             DispatchTime.now().uptimeNanoseconds
     ) -> SwimTerminalSurfaceEvent? {
-        if case .mouse = event { return nil }
+        if case .pointer = event { return nil }
 
         if commandLine.isActive {
             switch commandLine.handle(
@@ -245,7 +246,7 @@ public struct SwimTerminalSurface:
 
     @discardableResult
     public mutating func handle(
-        _ key: TerminalKey,
+        _ key: SurfaceInput.Key,
         nowNanoseconds: UInt64 =
             DispatchTime.now().uptimeNanoseconds
     ) -> SwimTerminalSurfaceEvent? {

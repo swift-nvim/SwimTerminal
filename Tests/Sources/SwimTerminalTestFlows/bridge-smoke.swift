@@ -2,6 +2,7 @@ import Swim
 import SwimInterpreter
 import SwimTerminal
 import Terminal
+import Surface
 
 enum SwimTerminalBridgeSmoke {
     enum Failure:
@@ -37,7 +38,7 @@ enum SwimTerminalBridgeSmoke {
         var editor = SwimEditor(text: "keep Swim yank")
         _ = bridge.handle(.key(.char("y")), editor: &editor)
         guard bridge.handle(
-            .mouse(.init(kind: .scrollUp, row: 0, column: 0)), editor: &editor
+            .pointer(.init(kind: .scrollUp, row: 0, column: 0)), editor: &editor
         ) == nil,
               case .copyRequested(let copy)? = bridge.handle(.key(.char("y")), editor: &editor),
               copy.text.contains("keep Swim yank"),
@@ -45,25 +46,37 @@ enum SwimTerminalBridgeSmoke {
     }
 
     private static func runInputProbe() throws {
-        guard SwimTerminalInputAdapter.input(
-            for: .up
-        ) == .up,
-        SwimTerminalInputAdapter.input(
-            for: .control(
+        guard SwimTerminalInputAdapter.adapt(
+            .key(
+                .up
+            )
+        ) == .input(
+            .up
+        ),
+        SwimTerminalInputAdapter.adapt(
+            .key(
+                .control(
+                    "R"
+                )
+            )
+        ) == .input(
+            .control(
                 "R"
             )
-        ) == .control(
-            "R"
         ),
-        SwimTerminalInputAdapter.input(
-            for: TerminalKeyStroke(
-                key: .char(
-                    "r"
-                ),
-                modifiers: .control
+        SwimTerminalInputAdapter.adapt(
+            .stroke(
+                SurfaceInput.Stroke(
+                    key: .char(
+                        "r"
+                    ),
+                    modifiers: .control
+                )
             )
-        ) == .control(
-            "R"
+        ) == .input(
+            .control(
+                "R"
+            )
         ),
         SwimTerminalInputAdapter.adapt(
             .paste(

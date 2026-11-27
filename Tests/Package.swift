@@ -32,12 +32,16 @@ let package = Package(
             url: "https://github.com/swift-lco/Terminal.git",
             branch: "master"
         ),
+        .package(
+            url: "https://github.com/swift-lco/Surface.git",
+            branch: "master"
+        ),
         .package(path: ".."),
     ],
     targets: [
         .executableTarget(
             name: "SwimTerminalRegressionTests",
-            dependencies: [.product(name: "SwimTerminal", package: "SwimTerminal"), "Terminal", .product(name: "Testing", package: "Testing")]
+            dependencies: [.product(name: "SwimTerminal", package: "SwimTerminal"), "Terminal", .product(name: "Surface", package: "Surface"), .product(name: "Testing", package: "Testing")]
         ),
         .executableTarget(
             name: "SwimTerminalTestFlows",
@@ -46,6 +50,7 @@ let package = Package(
                 "Swim",
                 "SwimInterpreter",
                 "Terminal",
+                .product(name: "Surface", package: "Surface"),
             ]
         ),
     ],

@@ -1,6 +1,7 @@
 import Clipboard
 import Swim
 import Terminal
+import Surface
 
 public struct SwimTerminalBridge:
     Sendable
@@ -15,12 +16,12 @@ public struct SwimTerminalBridge:
 
     @discardableResult
     public func handle(
-        _ event: TerminalInputEvent,
+        _ event: SurfaceInput,
         editor: inout SwimEditor,
         pageRows: Int = 1
     ) -> SwimEditorEvent? {
         // Pointer events must not cancel a pending Swim operator such as y.
-        if case .mouse = event { return nil }
+        if case .pointer = event { return nil }
 
         let context = SwimEditorContext(
             pageRows: pageRows,

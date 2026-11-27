@@ -2,6 +2,7 @@ import Dispatch
 import Swim
 import SwimTerminal
 import Terminal
+import Surface
 
 enum SwimTerminalSurfaceLab {
     private enum Action: Sendable {
@@ -55,7 +56,7 @@ enum SwimTerminalSurfaceLab {
         var renderer = TerminalFrameRenderer(
             stream: stream
         )
-        var keyMap = TerminalKeyMap<Action>()
+        var keyMap = SurfaceBinding.Strokes<Action>()
         keyMap.remap(
             .control("C"),
             to: .escape
@@ -193,7 +194,7 @@ enum SwimTerminalSurfaceLab {
                     }
                 }
 
-                let routedInput: TerminalInputEvent
+                let routedInput: SurfaceInput
 
                 switch input.legacyKey {
                 case .control(let key)

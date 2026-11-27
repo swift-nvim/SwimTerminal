@@ -30,6 +30,10 @@ let package = Package(
             url: "https://github.com/swift-lco/Clipboard.git",
             branch: "master"
         ),
+        .package(
+            url: "https://github.com/swift-lco/Surface.git",
+            branch: "master"
+        ),
     ],
     targets: [
         .target(
@@ -39,6 +43,10 @@ let package = Package(
                 "SwimInterpreter",
                 "Terminal",
                 "Clipboard",
+                .product(
+                    name: "Surface",
+                    package: "Surface"
+                ),
             ]
         ),
     ],
